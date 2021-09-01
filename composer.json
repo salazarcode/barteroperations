@@ -1,0 +1,27 @@
+{
+    "name": "salazarcode/barter-operations",
+    "description": "Utilidades para intraders",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Salazarcode\\barteroperations\\": "/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrés",
+            "email": "andresalteclado@hotmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "symfony/http-foundation": "^5.3",
+        "guzzlehttp/guzzle": "7.0",
+        "psr/http-message": "^1.0",
+        "vlucas/phpdotenv": "^5.3",
+        "illuminate/support": "^8.58",
+        "illuminate/http": "^8.58",
+        "illuminate/routing": "^8.58"
+    }
+}
