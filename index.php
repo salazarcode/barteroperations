@@ -5,13 +5,14 @@ include "Services/Util.php";
 use Symfony\Component\HttpFoundation\Request;
 
 $request = Request::createFromGlobals();
+$uri = $request->server->get("REQUEST_URI");
 $service = new OperacionesService();
 
 $res = null;
 
 try
 {               
-    switch ($request->server->get("REQUEST_URI")) {
+    switch ($uri) {
         case '/market':
             $vs_currency = $request->get("vs_currency");
             $order = $request->get("order");
