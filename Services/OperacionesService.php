@@ -23,7 +23,6 @@ class OperacionesService
     public function Market($vs_currency, $order, $per_page, $page, $sparkline)
     {
         try{
-
             $res = $this->client->request("GET", $this->coin_market_url . 'coins/markets', [
                 "query" => [
                     "vs_currency" => $vs_currency,
