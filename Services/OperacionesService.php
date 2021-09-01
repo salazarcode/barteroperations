@@ -13,23 +13,17 @@ class OperacionesService
     private $request = null;
 
 
-    function __construct($request, $coin_market_url, $checker_api_url) 
+    function __construct($coin_market_url, $checker_api_url) 
     {
         $this->coin_market_url = $coin_market_url;
         $this->checker_api_url = $checker_api_url;
         $this->client = new Client();
-        $this->request = $request;
     }
 
 
-    public function GetCoinMarkets()
+    public function Market($vs_currency, $order, $per_page, $page, $sparkline)
     {
         try{
-            $vs_currency = $this->request->get("vs_currency");
-            $order = $this->request->get("order");
-            $per_page = $this->request->get("per_page");
-            $page = $this->request->get("page");
-            $sparkline = $this->request->get("sparkline");
 
             $res = $this->client->request("GET", $this->coin_market_url . 'coins/markets', [
                 "query" => [
@@ -48,12 +42,9 @@ class OperacionesService
         }
     }
 
-    public function CheckTransaction()
+    public function Check()
     {
         try{            
-            $hash = $this->request->get("hash");
-            $amount = $this->request->get("amount");
-
             $res = $this->client->request("GET", $this->checker_api_url, [
                 "query" => [
                     "hash" => $hash,

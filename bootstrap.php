@@ -13,5 +13,5 @@ $env->safeLoad();
 $coin_market_url = $_ENV['COIN_MARKET_URL'];
 $checker_api = $_ENV['CHECKER_API'];
 
-$service = new OperacionesService($request, $coin_market_url, $checker_api);
+$service = new OperacionesService($coin_market_url, $checker_api);
 /*********************************************************************/
