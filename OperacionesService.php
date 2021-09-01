@@ -20,12 +20,12 @@ class OperacionesService
         $this->cointrader_api = $_ENV['COINTRADER_API'];
     }
 
-    public function Market($vs_currency, $order, $per_page, $page, $sparkline)
+    public function Market($currency, $order, $per_page, $page, $sparkline)
     {
         try{
-            $res = $this->client->request("GET", $this->coin_market_url . 'coins/markets', [
+            $res = $this->client->request("GET", $this->coin_market_url, [
                 "query" => [
-                    "vs_currency" => $vs_currency,
+                    "vs_currency" => $currency,
                     "order" => $order,
                     "per_page" => $per_page,
                     "page"=> $page,
