@@ -10,7 +10,6 @@ class OperacionesService
     private $coin_market_url = null;
     private $checker_api_url = null;
     private $client = null;
-    private $request = null;
 
     function __construct() 
     {        
