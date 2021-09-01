@@ -1,8 +1,11 @@
 <?php
-include "bootstrap.php";
+include "Services/OperacionesService.php";
 include "Services/Util.php";
 
 use Symfony\Component\HttpFoundation\Request;
+
+$request = Request::createFromGlobals();
+$service = new OperacionesService();
 
 $res = null;
 
@@ -16,14 +19,14 @@ try
             $page = $request->get("page");
             $sparkline = $request->get("sparkline");
 
-            $res = $service->GetCoinMarkets($vs_currency, $order, $per_page, $page, $sparkline);
+            $res = $service->Market($vs_currency, $order, $per_page, $page, $sparkline);
             break;
             
         case '/check':
             $hash = $request->get("hash");
             $amount = $request->get("amount");
 
-            $res = $service->CheckTransaction($hash, $amount);
+            $res = $service->Check($hash, $amount);
             break;
     }
     

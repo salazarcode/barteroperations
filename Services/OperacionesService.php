@@ -2,8 +2,8 @@
 include "vendor/autoload.php";
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
+use Dotenv\Dotenv;
 
 class OperacionesService
 {   
@@ -12,14 +12,14 @@ class OperacionesService
     private $client = null;
     private $request = null;
 
-
-    function __construct($coin_market_url, $checker_api_url) 
-    {
-        $this->coin_market_url = $coin_market_url;
-        $this->checker_api_url = $checker_api_url;
+    function __construct() 
+    {        
         $this->client = new Client();
+        $env = Dotenv::createImmutable(__DIR__);
+        $env->safeLoad();
+        $this->coin_market_url = $_ENV['COIN_MARKET_URL'];
+        $this->cointrader_api = $_ENV['COINTRADER_API'];
     }
-
 
     public function Market($vs_currency, $order, $per_page, $page, $sparkline)
     {
@@ -42,10 +42,10 @@ class OperacionesService
         }
     }
 
-    public function Check()
+    public function Check($hash, $amount)
     {
         try{            
-            $res = $this->client->request("GET", $this->checker_api_url, [
+            $res = $this->client->request("GET", $this->cointrader_api, [
                 "query" => [
                     "hash" => $hash,
                     "expectedAmount" => $amount
